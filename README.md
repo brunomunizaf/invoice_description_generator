@@ -1,4 +1,4 @@
-# Gerador de Descrição de Conversão de Moeda
+# Gerador de descrição para NFs (USD-BRL)
 
 Este projeto Python busca a cotação do dólar na API do SGS (Sistema Gerenciador de Séries Temporais) do Banco Central do Brasil e gera um texto de conversão de moeda estrangeira para reais, conforme a IN RFB nº 1.312/2012.
 
