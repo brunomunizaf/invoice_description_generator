@@ -61,7 +61,31 @@ curl "https://seu-app.onrender.com/api/rate?date=07082025"
 
 #### **Deploy no Render:**
 
-Para fazer deploy da API, consulte o arquivo `DEPLOY_RENDER.md` para instruções detalhadas.
+O projeto está configurado para deploy automático no Render:
+
+1. **Faça push para o GitHub:**
+   ```bash
+   git push origin main
+   ```
+
+2. **Acesse o Render:**
+   - Vá para [render.com](https://render.com)
+   - Faça login/cadastro
+   - Clique em "New +" → "Web Service"
+
+3. **Conecte com GitHub:**
+   - Selecione seu repositório
+   - O Render detectará automaticamente a configuração
+
+4. **Configure o serviço:**
+   - **Name**: `invoice-description-generator-api`
+   - **Environment**: `Python`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `gunicorn api:app`
+
+5. **Clique em "Create Web Service"**
+
+Após o deploy, sua API estará disponível em: `https://seu-app.onrender.com`
 
 ### Interface de Linha de Comando
 
@@ -138,7 +162,6 @@ O projeto utiliza a API oficial do SGS (Sistema Gerenciador de Séries Temporais
 - `install.sh`: Script de instalação automática
 - `render.yaml`: Configuração para deploy no Render
 - `Procfile`: Configuração para deploy no Render
-- `DEPLOY_RENDER.md`: Guia completo de deploy no Render
 - `API_DOCUMENTATION.md`: Documentação detalhada da API
 
 ## Testes
