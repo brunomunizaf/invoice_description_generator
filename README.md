@@ -9,6 +9,7 @@ Este projeto Python busca a cotação do dólar na API do SGS (Sistema Gerenciad
 - Geração de texto formatado com valores e datas atualizadas
 - Suporte para diferentes valores em USD
 - Interface de linha de comando com flags para facilitar o uso
+- **API REST**: Endpoints para integração com outras aplicações
 - Fonte oficial do Banco Central do Brasil
 - Transparência total com URL dos dados quando usando `--verbose`
 
@@ -27,6 +28,40 @@ chmod +x install.sh
 ```
 
 ## Uso
+
+### API REST
+
+O projeto inclui uma API REST para integração com outras aplicações:
+
+#### **Endpoints Disponíveis:**
+
+- **Health Check**: `GET /health`
+- **API Info**: `GET /api/info`
+- **Buscar Cotação**: `GET /api/rate?date=07082025`
+- **Gerar Texto**: `POST /api/convert`
+
+#### **Exemplo de Uso da API:**
+
+```bash
+# Health check
+curl https://seu-app.onrender.com/health
+
+# Gerar texto de conversão
+curl -X POST https://seu-app.onrender.com/api/convert \
+  -H "Content-Type: application/json" \
+  -d '{
+    "usd_amount": 6774.00,
+    "date": "07082025",
+    "show_url": true
+  }'
+
+# Buscar cotação
+curl "https://seu-app.onrender.com/api/rate?date=07082025"
+```
+
+#### **Deploy no Render:**
+
+Para fazer deploy da API, consulte o arquivo `DEPLOY_RENDER.md` para instruções detalhadas.
 
 ### Interface de Linha de Comando
 
@@ -94,11 +129,17 @@ O projeto utiliza a API oficial do SGS (Sistema Gerenciador de Séries Temporais
 ## Estrutura do Projeto
 
 - `invoice_description_generator.py`: Módulo principal com as funções de busca de cotação e geração de texto
+- `api.py`: API REST Flask para integração com outras aplicações
 - `requirements.txt`: Dependências do projeto
 - `example.py`: Exemplo de uso do módulo
 - `test_generator.py`: Testes automatizados
+- `test_api.py`: Testes da API REST
 - `setup.py`: Configuração de instalação
 - `install.sh`: Script de instalação automática
+- `render.yaml`: Configuração para deploy no Render
+- `Procfile`: Configuração para deploy no Render
+- `DEPLOY_RENDER.md`: Guia completo de deploy no Render
+- `API_DOCUMENTATION.md`: Documentação detalhada da API
 
 ## Testes
 
